@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  avatar      String?
+  bio         String?
+  distance    Float   @default(0)
+  id          Int     @id
+  name        String
+  points      Int     @default(0)
+  steps       Int     @default(0)
+  usingMetric Boolean @default(true) @map("usingmetric")
+}
