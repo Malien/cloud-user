@@ -56,3 +56,12 @@ export const wrapAPI = <T extends object | void>(responder: APIResponder<T>) =>
                 .catch(error =>
                     respond(res, { error: error.message || error }, error.statusCode || 500, error.headers)
                 )
+            
+export const getId = (req: Request) => {
+    const idHeader = req.headers["user-id"]
+    if (!idHeader || idHeader instanceof Array) throw new APIError("User id not provided", 401)
+    const id = parseInt(idHeader)
+    if (isNaN(id)) throw new APIError("User id is expected to be an integer", 400)
+
+    return id;
+}

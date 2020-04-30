@@ -1,6 +1,7 @@
 import express from "express";
-import { me, serviceinfo } from "./api";
 import { PrismaClient } from "@prisma/client";
+import bodyparser from "body-parser";
+import { me, change, avatar, serviceinfo } from "./api";
 
 const { BIND_ADDRESS, PORT } = process.env
 
@@ -24,8 +25,11 @@ const prisma = new PrismaClient({
 prisma.connect()
     .then(() => {
         const app = express()
+        app.use(bodyparser)
         app.get("/serviceinfo", serviceinfo(prisma))
         app.get("/me", me(prisma))
+        app.post("/change", change(prisma))
+        app.post("/avatar", avatar(prisma))
 
         const port = parseInt(PORT!)
         if (isNaN(port)) throw new Error("PORT expected to be an integer")

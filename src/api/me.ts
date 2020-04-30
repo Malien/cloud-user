@@ -1,9 +1,7 @@
-import { wrapAPI, APIError } from "../util/api";
+import { wrapAPI, getId } from "../util/api";
 
 export default wrapAPI(async (req, prisma) => {
-    const idHeader = req.headers["user-id"]
-    if (!idHeader || idHeader instanceof Array) throw new APIError("Invalid user-id header", 401)
-    const id = parseInt(idHeader)
+    const id = getId(req)
 
     const user = await prisma.user.findOne({
         where: { id },
