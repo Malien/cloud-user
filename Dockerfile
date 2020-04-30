@@ -27,5 +27,5 @@ COPY .env .
 COPY --from=build /usr/motum/api-gateway/out ./out
 COPY --from=deps /usr/motum/api-gateway/prod_node_modules ./node_modules
 
-EXPOSE 5507
+EXPOSE 5508
 CMD ["yarn", "start"]
