@@ -10,7 +10,9 @@
     "build": "sh build.sh",
     "clear": "rm -Rf out",
     "start": "node -r dotenv-safe/config out/server.js",
-    "docker": "docker build -t invictamotum/user ."
+    "docker": "docker build -t invictamotum/user .",
+    "prisma": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.3",
