@@ -1,4 +1,4 @@
-import express from "express";
+import express, { application } from "express";
 import { PrismaClient } from "@prisma/client";
 import bodyparser from "body-parser";
 import { me, change, avatar, serviceinfo } from "./api";
@@ -25,7 +25,7 @@ const prisma = new PrismaClient({
 prisma.connect()
     .then(() => {
         const app = express()
-        app.use(bodyparser)
+        app.use(bodyparser.json())
         app.get("/serviceinfo", serviceinfo(prisma))
         app.get("/me", me(prisma))
         app.post("/change", change(prisma))
