@@ -1,4 +1,4 @@
-import { wrapAPI, getId, APIError } from "../util/api";
+import { getId, wrapAPI } from "../util/api";
 
 export default wrapAPI(async (req, prisma) => {
     const id = getId(req)

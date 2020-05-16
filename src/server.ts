@@ -1,7 +1,7 @@
-import express, { application } from "express";
 import { PrismaClient } from "@prisma/client";
 import bodyparser from "body-parser";
-import { me, change, avatar, serviceinfo } from "./api";
+import express from "express";
+import { avatar, change, me, serviceinfo } from "./api";
 
 const { BIND_ADDRESS, PORT } = process.env
 
